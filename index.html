@@ -42,9 +42,11 @@ body {
   <h2 id="tap">Tap to open 🎁</h2>
   <div id="message"></div>
 </div>
-<audio id="audio"
-src="Saint_Preux_The_Last_Opera_1994
-_Vision_de_Paradis.mp3" loop></audio >
+
+<audio id="audio" loop>
+  <source src="Saint_Preux_The_Last_Opera_1994_Vision_de_Paradis.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 const text = `To a rare soul...
 In a world full of noise, your light stays clear.
@@ -60,10 +62,19 @@ Keep becoming more of who you are.
 Happy Birthday 🎉
 You are unforgettable.`;
 let i = 0;
+let isStarted = false;
 
 function startTyping() {
+  if (isStarted) return; 
+  isStarted = true;
+
   document.getElementById("message").style.display = "block";
   document.getElementById("tap").style.display = "none";
+  
+  
+  const myAudio = document.getElementById("audio");
+  myAudio.play().catch(error => console.log("Audio play failed:", error));
+
   typeWriter();
 }
 
@@ -71,9 +82,8 @@ function typeWriter() {
   if (i < text.length) {
     document.getElementById("message").innerHTML += text.charAt(i);
     i++;
-     var audio = document.getElementById("myAudio");
-  audio.play();
-    setTimeout(typeWriter, 40);
+   
+    setTimeout(typeWriter, 10); 
   }
 }
 </script>
