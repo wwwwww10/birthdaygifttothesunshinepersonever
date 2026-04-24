@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Birthday Surprise</title>
 
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("https://i.postimg.cc/WpDspGT7/IMG-1640.jpg") no-repeat center/cover;
+  font-family: "Brush Script MT", cursive;
+}
+
+#card {
+  background: rgba(255,255,255,0.6);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  width: 80%;
+  max-width: 500px;
+}
+
+#message {
+  display: none;
+  font-size: 22px;
+  line-height: 1.8;
+  white-space: pre-line;
+  color: #222;
+}
+</style>
+</head>
+
+<body>
+
+<div id="card" onclick="startTyping()">
+  <h2 id="tap">Tap to open 🎁</h2>
+  <div id="message"></div>
+</div>
+
+<script>
+const text = `To a rare soul...
+In a world full of noise, your light stays clear.
+Some people pass by,
+some people remain in memory.
+You are the second kind.
+May your heart stay soft,
+your mind stay strong,
+and your path stay bright.
+Keep blooming.
+Keep rising.
+Keep becoming more of who you are.
+Happy Birthday 🎉
+You are unforgettable.`;
+let i = 0;
+
+function startTyping() {
+  document.getElementById("message").style.display = "block";
+  document.getElementById("tap").style.display = "none";
+  typeWriter();
+}
+
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById("message").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 30);
+  }
+}
+</script>
+
+</body>
+</html>
