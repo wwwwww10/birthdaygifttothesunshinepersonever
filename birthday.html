@@ -1,0 +1,155 @@
+ <!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To a Rare Soul</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:italic,wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fdfbfb;
+            --text-color: #4a4a4a;
+            --accent-color: #d4af37; /* Gold touch */
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Playfair Display', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Overlay Initial */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 1s ease;
+        }
+
+        #tap-button {
+            padding: 15px 30px;
+            border: 1px solid var(--text-color);
+            background: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        #tap-button:hover {
+            background: var(--text-color);
+            color: white;
+        }
+
+        /* Main Content */
+        #main-content {
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 2s ease;
+            position: relative;
+        }
+
+        .background-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            opacity: 0.15; 
+            z-index: -1;
+        }
+
+        #typewriter {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            min-height: 300px;
+        }
+
+        .unforgettable {
+            margin-top: 30px;
+            font-weight: bold;
+            font-size: 1.6rem;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="overlay">
+        <button id="tap-button">TAP TO OPEN</button>
+    </div>
+
+    <div id="main-content">
+        <img src="https://i.postimg.cc/WpDspGT7/IMG-1640.jpg" alt="Background" class="background-image">
+        
+        <div id="typewriter"></div>
+        
+        <audio id="birthday-song" loop>
+            <source src="Saint_Preux_The_Last_Opera_1994_Vision_de_Paradis.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        const text = `To a rare soul...
+In a world full of noise, your light stays clear.
+Some people pass by.
+Some people remain in memory.
+You are the second kind.
+May your heart stay soft,
+your mind stay strong,
+and your path stay bright.
+Keep blooming.
+Keep rising.
+Keep becoming more of who you are.
+May this year bring quiet victories, deep peace, and beautiful surprises.
+Happy Birthday.
+You are unforgettable.`;
+
+        const tapButton = document.getElementById('tap-button');
+        const overlay = document.getElementById('overlay');
+        const mainContent = document.getElementById('main-content');
+        const typewriterElement = document.getElementById('typewriter');
+        const song = document.getElementById('birthday-song');
+
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                typewriterElement.innerHTML += text.charAt(i);
+                i++;
+                // 
+                setTimeout(typeWriter, 80);
+            }
+        }
+
+        tapButton.addEventListener('click', () => {
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+ overlay.style.display = 'none';
+                mainContent.style.opacity = '1';
+                song.play(); //
+                typeWriter();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
